@@ -1,0 +1,102 @@
+
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { useAuth } from "@/hooks/useAuth";
+import { Bell, Menu, X } from "lucide-react";
+import Sidebar from "./Sidebar";
+import { notifications } from "@/data/mockData";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Link } from "react-router-dom";
+import { Badge } from "@/components/ui/badge";
+
+const Navbar = () => {
+  const { user } = useAuth();
+  const [showMobileSidebar, setShowMobileSidebar] = useState(false);
+  
+  // Get unread notifications count
+  const unreadNotifications = notifications.filter(notification => !notification.read).length;
+
+  if (!user) return null;
+
+  return (
+    <>
+      <header className="bg-white shadow-sm border-b sticky top-0 z-10">
+        <div className="container mx-auto px-4 h-16 flex items-center justify-between">
+          {/* Mobile sidebar toggle */}
+          <Button
+            variant="ghost"
+            size="icon"
+            className="md:hidden"
+            onClick={() => setShowMobileSidebar(true)}
+          >
+            <Menu className="h-6 w-6" />
+            <span className="sr-only">Toggle menu</span>
+          </Button>
+          
+          {/* Title - visible on all screens */}
+          <h1 className="text-xl font-bold text-campus-primary md:ml-0 ml-2">
+            Smart Campus
+          </h1>
+
+          {/* Right side: notifications, etc. */}
+          <div className="flex items-center space-x-4">
+            {/* Notifications dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" size="icon" className="relative">
+                  <Bell className="h-5 w-5" />
+                  {unreadNotifications > 0 && (
+                    <Badge className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 bg-campus-error text-white">
+                      {unreadNotifications}
+                    </Badge>
+                  )}
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-80">
+                <DropdownMenuLabel>Notifications</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                {notifications.slice(0, 3).map((notification) => (
+                  <DropdownMenuItem key={notification.id} className="py-2 px-4">
+                    <div className="flex flex-col w-full">
+                      <div className="flex items-center justify-between">
+                        <p className="font-medium text-sm">{notification.title}</p>
+                        <span className="text-xs text-muted-foreground">
+                          {notification.date}
+                        </span>
+                      </div>
+                      <p className="text-sm text-muted-foreground mt-1 truncate">
+                        {notification.message}
+                      </p>
+                    </div>
+                  </DropdownMenuItem>
+                ))}
+                <DropdownMenuSeparator />
+                <DropdownMenuItem asChild className="cursor-pointer justify-center">
+                  <Link to="/notifications" className="text-campus-primary text-sm font-medium">
+                    View All Notifications
+                  </Link>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
+        </div>
+      </header>
+
+      {/* Mobile sidebar */}
+      {showMobileSidebar && (
+        <div className="md:hidden">
+          <Sidebar isMobile onClose={() => setShowMobileSidebar(false)} />
+        </div>
+      )}
+    </>
+  );
+};
+
+export default Navbar;
