@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Home, BookOpen, BookUser, Settings, LogOut, Bell, Wrench } from 'lucide-react';
+import { Home, BookOpen, BookUser, Settings, LogOut, Bell, Wrench, Calendar } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/useAuth";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -28,6 +28,12 @@ const sidebarNavItems = [
     name: 'Timetable', 
     icon: BookUser, 
     path: '/timetable',
+    roles: ['student', 'lecturer'] 
+  },
+  { 
+    name: 'Appointments', 
+    icon: Calendar, 
+    path: '/appointments',
     roles: ['student', 'lecturer'] 
   },
   { 

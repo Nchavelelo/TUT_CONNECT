@@ -41,7 +41,7 @@ const Navbar = () => {
           
           {/* Title - visible on all screens */}
           <h1 className="text-xl font-bold text-campus-primary md:ml-0 ml-2">
-            Smart Campus
+            TUT CONNECT
           </h1>
 
           {/* Right side: notifications, etc. */}
