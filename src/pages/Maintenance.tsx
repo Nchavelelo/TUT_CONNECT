@@ -46,18 +46,18 @@ const Maintenance = () => {
   };
   
   return (
-    <div className="flex h-screen bg-gray-50">
-      <ResizablePanelGroup direction="horizontal">
-        <ResizablePanel defaultSize={20} minSize={15} maxSize={25}>
+    <div className="flex h-screen w-full overflow-hidden bg-gray-50">
+      <ResizablePanelGroup direction="horizontal" className="w-full">
+        <ResizablePanel defaultSize={20} minSize={15} maxSize={20} className="hidden md:block">
           <Sidebar />
         </ResizablePanel>
-        <ResizableHandle withHandle />
-        <ResizablePanel defaultSize={80}>
-          <div className="flex-1 flex flex-col min-h-screen">
+        <ResizableHandle withHandle className="hidden md:flex" />
+        <ResizablePanel defaultSize={80} className="w-full">
+          <div className="flex flex-col h-full w-full overflow-hidden">
             <Navbar />
-            <main className="flex-1 p-8 overflow-auto">
-              <div className="max-w-7xl mx-auto space-y-8">
-                <div className="mb-8">
+            <main className="flex-1 overflow-y-auto p-4 md:p-6">
+              <div className="w-full max-w-full mx-auto">
+                <div className="mb-6">
                   <h1 className="text-2xl font-bold text-campus-primary">Maintenance Requests</h1>
                   <p className="text-gray-600">Report and track maintenance issues on campus</p>
                 </div>
@@ -65,7 +65,7 @@ const Maintenance = () => {
                 <Tabs 
                   value={activeTab} 
                   onValueChange={setActiveTab} 
-                  className="mb-8"
+                  className="mb-6"
                 >
                   <TabsList className="w-full md:w-auto grid grid-cols-2">
                     <TabsTrigger value="report">Report an Issue</TabsTrigger>
@@ -84,7 +84,7 @@ const Maintenance = () => {
                             <p className="text-gray-600 mb-4">
                               Your maintenance request has been submitted and will be processed shortly.
                             </p>
-                            <div className="flex justify-center space-x-4">
+                            <div className="flex flex-col sm:flex-row justify-center space-y-2 sm:space-y-0 sm:space-x-4">
                               <Button 
                                 variant="outline"
                                 onClick={() => {
