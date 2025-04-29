@@ -1,4 +1,3 @@
-
 import { Notification } from "@/data/mockData";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -72,7 +71,7 @@ const NotificationList = ({
   );
 
   return (
-    <div className="bg-white rounded-lg shadow overflow-hidden">
+    <div className="bg-white rounded-lg shadow overflow-hidden h-full flex flex-col">
       <div className="flex justify-between items-center p-4 border-b">
         <h3 className="text-lg font-semibold text-campus-primary">Notifications</h3>
         {getUnreadCount("all") > 0 && (
@@ -86,14 +85,14 @@ const NotificationList = ({
         )}
       </div>
 
-      <Tabs defaultValue="all">
-        <div className="px-4 pt-4">
-          <TabsList className="w-full grid grid-cols-5">
+      <Tabs defaultValue="all" className="flex-1 flex flex-col">
+        <div className="px-4 pt-4 overflow-x-auto">
+          <TabsList className="w-full grid grid-cols-3 sm:grid-cols-5">
             {categories.map((category) => (
               <TabsTrigger
                 key={category}
                 value={category}
-                className="capitalize relative"
+                className="capitalize relative whitespace-nowrap"
               >
                 {category}
                 {getUnreadCount(category) > 0 && (
@@ -107,8 +106,8 @@ const NotificationList = ({
         </div>
 
         {categories.map((category) => (
-          <TabsContent key={category} value={category} className="mt-0">
-            <div className="divide-y max-h-96 overflow-y-auto">
+          <TabsContent key={category} value={category} className="mt-0 flex-1 overflow-hidden">
+            <div className="divide-y max-h-[calc(100vh-16rem)] overflow-y-auto">
               {getNotificationsByCategory(category).length > 0 ? (
                 getNotificationsByCategory(category).map(renderNotificationItem)
               ) : (

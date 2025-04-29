@@ -1,4 +1,3 @@
-
 import { useAuth } from "@/hooks/useAuth";
 import Navbar from "@/components/Navbar";
 import Sidebar from "@/components/Sidebar";
@@ -16,17 +15,17 @@ const Dashboard = () => {
   if (!user) return null;
 
   return (
-    <div className="flex h-screen bg-gray-50">
-      <ResizablePanelGroup direction="horizontal">
-        <ResizablePanel defaultSize={20} minSize={15} maxSize={25}>
+    <div className="flex h-screen w-full overflow-hidden bg-gray-50">
+      <ResizablePanelGroup direction="horizontal" className="w-full">
+        <ResizablePanel defaultSize={20} minSize={15} maxSize={20} className="hidden md:block">
           <Sidebar />
         </ResizablePanel>
-        <ResizableHandle withHandle />
-        <ResizablePanel defaultSize={80}>
-          <div className="flex-1 flex flex-col min-h-screen">
+        <ResizableHandle withHandle className="hidden md:flex" />
+        <ResizablePanel defaultSize={80} className="w-full">
+          <div className="flex flex-col h-full w-full overflow-hidden">
             <Navbar />
-            <main className="flex-1 p-8 overflow-auto">
-              <div className="max-w-7xl mx-auto space-y-8">
+            <main className="flex-1 overflow-y-auto p-4 md:p-6">
+              <div className="w-full max-w-full mx-auto space-y-6">
                 <DashboardHeader />
                 <QuickActions />
                 {user?.role === "admin" && <AdminActions />}

@@ -37,30 +37,36 @@ const Notifications = () => {
   };
   
   return (
-    <div className="flex h-screen bg-gray-50">
-      <ResizablePanelGroup direction="horizontal">
-        <ResizablePanel defaultSize={20} minSize={15} maxSize={25}>
+    <div className="flex h-screen w-full overflow-hidden bg-gray-50">
+      <ResizablePanelGroup direction="horizontal" className="w-full">
+        <ResizablePanel defaultSize={20} minSize={15} maxSize={20} className="hidden md:block">
           <Sidebar />
         </ResizablePanel>
-        <ResizableHandle withHandle />
-        <ResizablePanel defaultSize={80}>
-          <div className="flex-1 flex flex-col min-h-screen">
+        <ResizableHandle withHandle className="hidden md:flex" />
+        <ResizablePanel defaultSize={80} className="w-full">
+          <div className="flex flex-col h-full w-full overflow-hidden">
             <Navbar />
-            <main className="page-container">
-              <div className="mb-8">
-                <h1 className="text-2xl font-bold text-campus-primary">Notifications</h1>
-                <p className="text-gray-600">Stay updated with campus announcements and alerts</p>
-              </div>
-              
-              <div className="grid gap-8 grid-cols-1 lg:grid-cols-2">
-                {canSendNotifications && (
-                  <SendNotification />
-                )}
-                <NotificationList
-                  notifications={notifications}
-                  onMarkAsRead={handleMarkAsRead}
-                  onMarkAllAsRead={handleMarkAllAsRead}
-                />
+            <main className="flex-1 overflow-y-auto p-4 md:p-6">
+              <div className="w-full max-w-full mx-auto">
+                <div className="mb-6">
+                  <h1 className="text-2xl font-bold text-campus-primary">Notifications</h1>
+                  <p className="text-gray-600">Stay updated with campus announcements and alerts</p>
+                </div>
+                
+                <div className="grid gap-6 grid-cols-1 lg:grid-cols-12">
+                  {canSendNotifications && (
+                    <div className="lg:col-span-4">
+                      <SendNotification />
+                    </div>
+                  )}
+                  <div className={`${canSendNotifications ? 'lg:col-span-8' : 'lg:col-span-12'}`}>
+                    <NotificationList
+                      notifications={notifications}
+                      onMarkAsRead={handleMarkAsRead}
+                      onMarkAllAsRead={handleMarkAllAsRead}
+                    />
+                  </div>
+                </div>
               </div>
             </main>
           </div>
