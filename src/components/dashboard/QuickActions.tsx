@@ -1,9 +1,11 @@
-
 import { Link } from "react-router-dom";
-import { BookMarked, Clock, BookOpen, AlertTriangle } from "lucide-react";
+import { BookMarked, Clock, BookOpen, AlertTriangle, Calendar } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import { useAuth } from "@/hooks/useAuth";
 
 export const QuickActions = () => {
+  const { user } = useAuth();
+  
   const actions = [
     {
       title: "Room Bookings",
@@ -14,6 +16,12 @@ export const QuickActions = () => {
       title: "Timetable",
       icon: Clock,
       path: "/timetable",
+    },
+    {
+      title: "Appointments",
+      icon: Calendar,
+      path: "/appointments",
+      roles: ["student", "lecturer"],
     },
     {
       title: "Maintenance",
@@ -28,9 +36,13 @@ export const QuickActions = () => {
     },
   ];
 
+  const filteredActions = actions.filter(action => 
+    !action.roles || (user && action.roles.includes(user.role as string))
+  );
+
   return (
     <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-      {actions.map((action) => (
+      {filteredActions.map((action) => (
         <Link
           key={action.path}
           to={action.path}

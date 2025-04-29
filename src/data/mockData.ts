@@ -63,6 +63,18 @@ export interface Notification {
   category: 'general' | 'booking' | 'maintenance' | 'academic';
 }
 
+export interface AppointmentRequest {
+  id: string;
+  studentId: string;
+  lecturerId: string;
+  subject: string;
+  description: string;
+  preferredDate: string;
+  preferredTime: string;
+  status: 'pending' | 'approved' | 'rejected';
+  createdAt: string;
+}
+
 export const users: User[] = [
   {
     id: 'user1',
@@ -275,5 +287,54 @@ export const notifications: Notification[] = [
     date: '2025-04-24',
     read: true,
     category: 'general'
+  }
+];
+
+export const lecturers: User[] = [
+  {
+    id: 'lecturer1',
+    name: 'Dr. Sarah Williams',
+    email: 'sarah.williams@tut.edu',
+    role: 'lecturer',
+    avatar: 'https://randomuser.me/api/portraits/women/4.jpg'
+  },
+  {
+    id: 'lecturer2',
+    name: 'Prof. Michael Johnson',
+    email: 'michael.johnson@tut.edu',
+    role: 'lecturer',
+    avatar: 'https://randomuser.me/api/portraits/men/5.jpg'
+  },
+  {
+    id: 'lecturer3',
+    name: 'Dr. Emily Brown',
+    email: 'emily.brown@tut.edu',
+    role: 'lecturer',
+    avatar: 'https://randomuser.me/api/portraits/women/6.jpg'
+  }
+];
+
+export const appointmentRequests: AppointmentRequest[] = [
+  {
+    id: 'appt1',
+    studentId: 'user1',
+    lecturerId: 'lecturer1',
+    subject: 'Assignment Discussion',
+    description: 'I need help understanding the requirements for the final project.',
+    preferredDate: '2025-05-10',
+    preferredTime: '14:00',
+    status: 'pending',
+    createdAt: '2025-04-28'
+  },
+  {
+    id: 'appt2',
+    studentId: 'user1',
+    lecturerId: 'lecturer2',
+    subject: 'Career Advice',
+    description: 'I would like to discuss career opportunities in the field.',
+    preferredDate: '2025-05-15',
+    preferredTime: '10:00',
+    status: 'approved',
+    createdAt: '2025-04-27'
   }
 ];
