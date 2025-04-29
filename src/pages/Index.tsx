@@ -10,13 +10,13 @@ const Index = () => {
   
   useEffect(() => {
     // Debugging console log for background image
-    console.log('Background Image URL:', '/lovable-uploads/8dbd60b4-194d-4ae9-be9e-cd1fa578aa41.png');
+    console.log('Background Image URL:', '/lovable-uploads/download (1).jpg');
     
     // Check if image loads
     const img = new Image();
     img.onload = () => console.log('Image loaded successfully');
     img.onerror = () => console.error('Image failed to load');
-    img.src = '/lovable-uploads/8dbd60b4-194d-4ae9-be9e-cd1fa578aa41.png';
+    img.src = '/lovable-uploads/download (1).jpg';
   }, []);
 
   const handleFirstTimeUser = () => {
@@ -36,7 +36,7 @@ const Index = () => {
     <div 
       className="min-h-screen flex flex-col bg-cover bg-center bg-no-repeat"
       style={{
-        backgroundImage: "url('/lovable-uploads/8dbd60b4-194d-4ae9-be9e-cd1fa578aa41.png')", // Updated background image
+        backgroundImage: "url('/lovable-uploads/download (1).jpg')", // Updated background image
         backgroundColor: "rgba(0, 0, 0, 0.6)",
         backgroundBlendMode: "overlay"
       }}
