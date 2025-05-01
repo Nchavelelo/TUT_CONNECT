@@ -8,6 +8,7 @@ import { MaintenanceStatusChart } from "@/components/admin/MaintenanceStatusChar
 import { RoomDistributionChart } from "@/components/admin/RoomDistributionChart";
 import { MaintenancePriorityChart } from "@/components/admin/MaintenancePriorityChart";
 
+
 const AdminDashboard = () => {
   return (
     <div className="flex min-h-screen bg-gray-50">
