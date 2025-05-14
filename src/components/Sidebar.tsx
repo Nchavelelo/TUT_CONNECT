@@ -16,8 +16,16 @@ const sidebarNavItems = [
     name: 'Dashboard', 
     icon: Home, 
     path: '/dashboard',
-    roles: ['student', 'lecturer', 'admin'] 
+    roles: ['student', 'lecturer'] 
   },
+
+   { 
+    name: 'Dashboard', 
+    icon: Home, 
+    path: '/admin/admin-dashboard',
+    roles: ['admin'] 
+  },
+  
   { 
     name: 'Room Booking', 
     icon: BookOpen, 
@@ -40,18 +48,34 @@ const sidebarNavItems = [
     name: 'Maintenance', 
     icon: Wrench, 
     path: '/maintenance',
-    roles: ['student', 'lecturer', 'admin'] 
+    roles: ['student', 'lecturer'] 
   },
+   { 
+    name: 'Maintenance', 
+    icon: Wrench, 
+    path: '/admin/admin-maintenance',
+    roles: [ 'admin'] 
+  },
+  
   { 
     name: 'Notifications', 
     icon: Bell, 
     path: '/notifications',
-    roles: ['student', 'lecturer', 'admin'] 
+    roles: ['student', 'lecturer'] 
+
   },
+{ 
+    name: 'Notifications', 
+    icon: Bell, 
+    path: '/admin/admin-notifications',
+    roles: ['admin'] 
+
+  },
+ 
   { 
-    name: 'Admin', 
+    name: 'Manager', 
     icon: Settings, 
-    path: '/admin',
+    path: '/manager',
     roles: ['admin'] 
   }
 ];

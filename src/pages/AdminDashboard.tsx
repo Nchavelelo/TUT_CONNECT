@@ -7,6 +7,7 @@ import { BookingsByDayChart } from "@/components/admin/BookingsByDayChart";
 import { MaintenanceStatusChart } from "@/components/admin/MaintenanceStatusChart";
 import { RoomDistributionChart } from "@/components/admin/RoomDistributionChart";
 import { MaintenancePriorityChart } from "@/components/admin/MaintenancePriorityChart";
+import { DashboardHeader } from "@/components/dashboard/DashboardHeader";
 
 const AdminDashboard = () => {
   return (
@@ -17,6 +18,7 @@ const AdminDashboard = () => {
       
       <div className="flex-1">
         <Navbar />
+        <DashboardHeader />
         
         <main className="page-container">
           <div className="mb-8">
