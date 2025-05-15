@@ -1,6 +1,5 @@
-
 import { Button } from "@/components/ui/button";
-import { Room } from "@/data/mockData";
+import { Room, bookings } from "@/data/mockData";
 import { Badge } from "@/components/ui/badge";
 import { Users } from "lucide-react";
 import {
@@ -18,6 +17,21 @@ interface RoomCardProps {
 }
 
 const RoomCard = ({ room, onBook }: RoomCardProps) => {
+  // Calculate number of active bookings for this room
+  const activeBookings = bookings.filter(
+    booking => booking.roomId === room.id && booking.status === "confirmed"
+  ).length;
+  
+  // Calculate available space
+  const availableSpace = Math.max(0, room.capacity - activeBookings);
+  
+  // Determine the color based on availability
+  const getAvailabilityColor = () => {
+    if (availableSpace === 0) return "text-red-600 font-medium";
+    if (availableSpace <= room.capacity * 0.2) return "text-orange-500 font-medium";
+    return "text-green-600 font-medium";
+  };
+
   return (
     <Card className="overflow-hidden hover:shadow-lg transition-shadow">
       <div className="relative h-48 overflow-hidden">
@@ -39,7 +53,9 @@ const RoomCard = ({ room, onBook }: RoomCardProps) => {
       <CardContent className="pb-2">
         <div className="flex items-center text-sm text-gray-600 mb-2">
           <Users size={16} className="mr-1" />
-          <span>Capacity: {room.capacity}</span>
+          <span>
+            Capacity: <span className={getAvailabilityColor()}>{availableSpace}</span>/{room.capacity} available
+          </span>
         </div>
         <div className="flex flex-wrap gap-1">
           {room.features.map((feature, index) => (
@@ -53,8 +69,9 @@ const RoomCard = ({ room, onBook }: RoomCardProps) => {
         <Button 
           onClick={() => onBook(room.id)}
           className="w-full bg-campus-primary hover:bg-campus-secondary"
+          disabled={availableSpace === 0}
         >
-          Book This Room
+          {availableSpace === 0 ? "Fully Booked" : "Book This Room"}
         </Button>
       </CardFooter>
     </Card>
