@@ -19,7 +19,7 @@ import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/useAuth";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { cn } from '@/lib/utils';
-import { useToast } from "@/components/ui/use-toast";
+import { useToast } from "@/hooks/use-toast";
 
 interface SidebarProps {
   isMobile?: boolean;
@@ -104,6 +104,15 @@ const sidebarNavItems = [
     category: 'Management',
     highlight: true,
     description: 'Manage campus timetables'
+  },
+  { 
+    name: 'Maintenance Management', 
+    icon: Wrench, 
+    path: '/maintenance-admin',
+    roles: ['admin'],
+    category: 'Management',
+    highlight: true,
+    description: 'Manage maintenance requests'
   },
   { 
     name: 'System Settings', 

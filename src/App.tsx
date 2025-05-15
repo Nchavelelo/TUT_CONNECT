@@ -8,6 +8,7 @@ import Dashboard from "./pages/Dashboard";
 import RoomBooking from "./pages/RoomBooking";
 import Timetable from "./pages/Timetable";
 import Maintenance from "./pages/Maintenance";
+import MaintenanceAdmin from "./pages/MaintenanceAdmin";
 import Notifications from "./pages/Notifications";
 import AdminDashboard from "./pages/AdminDashboard";
 import UserManagement from "./pages/UserManagement";
@@ -67,6 +68,7 @@ const AppRoutes = () => {
       <Route path="/room-booking" element={<ProtectedRoute><RoomBooking /></ProtectedRoute>} />
       <Route path="/timetable" element={<ProtectedRoute><Timetable /></ProtectedRoute>} />
       <Route path="/maintenance" element={<ProtectedRoute><Maintenance /></ProtectedRoute>} />
+      <Route path="/maintenance-admin" element={<AdminRoute><MaintenanceAdmin /></AdminRoute>} />
       <Route path="/notifications" element={<ProtectedRoute><Notifications /></ProtectedRoute>} />
       <Route path="/appointments" element={<ProtectedRoute><Appointments /></ProtectedRoute>} />
       <Route path="/admin" element={<AdminRoute><AdminDashboard /></AdminRoute>} />

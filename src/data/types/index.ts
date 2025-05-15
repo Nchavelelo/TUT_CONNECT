@@ -1,4 +1,3 @@
-
 export type UserRole = 'student' | 'lecturer' | 'admin';
 export type UserStatus = 'active' | 'inactive' | 'suspended';
 
@@ -61,6 +60,9 @@ export interface MaintenanceRequest {
   status: 'pending' | 'in-progress' | 'resolved';
   priority: 'low' | 'medium' | 'high';
   imageUrl?: string;
+  assignedTo?: string;
+  assignedDate?: string;
+  notes?: string;
 }
 
 export interface Notification {

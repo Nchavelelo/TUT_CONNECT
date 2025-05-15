@@ -1,4 +1,3 @@
-
 import { MaintenanceRequest } from '../types';
 
 export const maintenanceRequests: MaintenanceRequest[] = [
@@ -10,7 +9,9 @@ export const maintenanceRequests: MaintenanceRequest[] = [
     reporterId: 'user1',
     dateReported: '2025-04-25',
     status: 'pending',
-    priority: 'high'
+    priority: 'high',
+    assignedTo: '',
+    assignedDate: ''
   },
   {
     id: 'maint2',
@@ -20,7 +21,9 @@ export const maintenanceRequests: MaintenanceRequest[] = [
     reporterId: 'user2',
     dateReported: '2025-04-26',
     status: 'in-progress',
-    priority: 'medium'
+    priority: 'medium',
+    assignedTo: 'tech3',
+    assignedDate: '2025-04-27'
   },
   {
     id: 'maint3',
@@ -30,6 +33,30 @@ export const maintenanceRequests: MaintenanceRequest[] = [
     reporterId: 'user1',
     dateReported: '2025-04-27',
     status: 'resolved',
-    priority: 'low'
+    priority: 'low',
+    assignedTo: 'tech2',
+    assignedDate: '2025-04-28'
+  },
+  {
+    id: 'maint4',
+    title: 'Wi-Fi connectivity issues',
+    description: 'Students cannot connect to campus Wi-Fi in the student center.',
+    location: 'Student Center, Main Campus',
+    reporterId: 'user3',
+    dateReported: '2025-04-24',
+    status: 'pending',
+    priority: 'high'
+  },
+  {
+    id: 'maint5',
+    title: 'Flickering lights',
+    description: 'The lights in Room 302 are flickering continuously.',
+    location: 'Room 302, Sciences Building',
+    reporterId: 'user4',
+    dateReported: '2025-04-23',
+    status: 'in-progress',
+    priority: 'medium',
+    assignedTo: 'tech1',
+    assignedDate: '2025-04-25'
   }
 ];
