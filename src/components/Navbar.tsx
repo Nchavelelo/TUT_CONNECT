@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/useAuth";
@@ -44,7 +43,7 @@ const Navbar = () => {
           
           {/* Title - visible on all screens */}
           <h1 className="text-xl font-bold text-campus-primary md:ml-0 ml-2">
-            Smart Campus
+            TUT Connect
           </h1>
 
           {/* Right side: notifications, etc. */}
