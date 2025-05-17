@@ -1,8 +1,8 @@
-
 import { useState } from "react";
 import { Calendar } from "@/components/ui/calendar";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
+import { Checkbox } from "@/components/ui/checkbox";
 import {
   Select,
   SelectContent,
@@ -11,9 +11,10 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import { Room, bookings, Booking } from "@/data/mockData";
+import { Room, bookings, Booking, classes, Class } from "@/data/mockData";
 import { useAuth } from "@/hooks/useAuth";
 import { useToast } from "@/hooks/use-toast";
+import { Users } from "lucide-react";
 
 interface BookingCalendarProps {
   room: Room | null;
@@ -25,10 +26,20 @@ const BookingCalendar = ({ room, onClose }: BookingCalendarProps) => {
   const [startTime, setStartTime] = useState<string>("09:00");
   const [endTime, setEndTime] = useState<string>("10:00");
   const [purpose, setPurpose] = useState<string>("");
+  const [isClassBooking, setIsClassBooking] = useState<boolean>(false);
+  const [selectedClass, setSelectedClass] = useState<string>("");
   const { user } = useAuth();
   const { toast } = useToast();
   
   if (!room || !user) return null;
+
+  // Only show class booking option for lecturers
+  const isLecturer = user.role === 'lecturer';
+  
+  // Get lecturer's classes
+  const lecturerClasses = isLecturer 
+    ? classes.filter(c => c.lecturer === user.name || c.instructor === user.name)
+    : [];
   
   // Available time slots from 8 AM to 8 PM in 30 minute increments
   const timeSlots = [
@@ -81,6 +92,20 @@ const BookingCalendar = ({ room, onClose }: BookingCalendarProps) => {
       });
       return;
     }
+
+    // Get purpose text based on booking type
+    let finalPurpose = purpose;
+    let selectedClassObj: Class | undefined;
+    
+    if (isLecturer && isClassBooking && selectedClass) {
+      selectedClassObj = classes.find(c => c.id === selectedClass);
+      if (selectedClassObj) {
+        finalPurpose = `Class: ${selectedClassObj.name} (${selectedClassObj.code || selectedClassObj.courseCode})`;
+        if (purpose) {
+          finalPurpose += ` - ${purpose}`;
+        }
+      }
+    }
     
     // In a real app, this would be an API call to create a booking
     const newBooking: Booking = {
@@ -90,8 +115,9 @@ const BookingCalendar = ({ room, onClose }: BookingCalendarProps) => {
       date: dateStr,
       startTime,
       endTime,
-      purpose,
-      status: "pending",
+      purpose: finalPurpose,
+      status: "pendingApproval",
+      userRole: user.role as 'student' | 'lecturer'
     };
     
     console.log("Creating new booking:", newBooking);
@@ -168,11 +194,54 @@ const BookingCalendar = ({ room, onClose }: BookingCalendarProps) => {
           </div>
         </div>
         
+        {/* Class booking option for lecturers */}
+        {isLecturer && (
+          <div className="space-y-4">
+            <div className="flex items-center space-x-2">
+              <Checkbox 
+                id="isClassBooking" 
+                checked={isClassBooking}
+                onCheckedChange={(checked) => setIsClassBooking(checked as boolean)}
+              />
+              <Label htmlFor="isClassBooking" className="cursor-pointer flex items-center">
+                <Users className="mr-2 h-4 w-4" />
+                Book for a class
+              </Label>
+            </div>
+            
+            {isClassBooking && (
+              <div className="space-y-2 pl-6">
+                <Label htmlFor="classSelect">Select Class</Label>
+                <Select
+                  value={selectedClass}
+                  onValueChange={setSelectedClass}
+                >
+                  <SelectTrigger id="classSelect">
+                    <SelectValue placeholder="Choose a class" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {lecturerClasses.map((cls) => (
+                      <SelectItem key={cls.id} value={cls.id}>
+                        {cls.name} ({cls.code || cls.courseCode})
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+            )}
+          </div>
+        )}
+        
         <div className="space-y-2">
-          <Label htmlFor="purpose">Purpose of Booking</Label>
+          <Label htmlFor="purpose">
+            {isLecturer && isClassBooking ? "Additional Notes (Optional)" : "Purpose of Booking"}
+          </Label>
           <Textarea
             id="purpose"
-            placeholder="Describe why you need this room..."
+            placeholder={isLecturer && isClassBooking 
+              ? "Add any additional details about this class booking..." 
+              : "Describe why you need this room..."
+            }
             value={purpose}
             onChange={(e) => setPurpose(e.target.value)}
             className="h-24"

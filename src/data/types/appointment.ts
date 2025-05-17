@@ -1,7 +1,7 @@
-
 export interface AppointmentRequest {
   id: string;
   studentId: string;
+  studentName?: string;
   lecturerId: string;
   subject: string;
   description: string;

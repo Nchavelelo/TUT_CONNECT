@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Room, bookings } from "@/data/mockData";
 import { Badge } from "@/components/ui/badge";
@@ -59,7 +58,7 @@ const RoomCard = ({ room, onBook }: RoomCardProps) => {
           </span>
         </div>
         <div className="flex flex-wrap gap-1">
-          {room.features.map((feature, index) => (
+          {room.features && room.features.map((feature, index) => (
             <Badge key={index} variant="outline" className="bg-campus-gray text-xs">
               {feature}
             </Badge>
