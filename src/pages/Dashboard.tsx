@@ -1,3 +1,4 @@
+
 import { useAuth } from "@/hooks/useAuth";
 import Navbar from "@/components/Navbar";
 import Sidebar from "@/components/Sidebar";
@@ -15,14 +16,14 @@ const Dashboard = () => {
   if (!user) return null;
 
   return (
-    <div className="flex h-screen w-full overflow-hidden bg-gray-50">
-      <ResizablePanelGroup direction="horizontal" className="w-full">
-        <ResizablePanel defaultSize={20} minSize={15} maxSize={20} className="hidden md:block">
+    <div className="flex h-screen overflow-hidden bg-gray-50">
+      <ResizablePanelGroup direction="horizontal" className="w-full h-full">
+        <ResizablePanel defaultSize={20} minSize={15} maxSize={20} className="hidden md:block h-screen">
           <Sidebar />
         </ResizablePanel>
         <ResizableHandle withHandle className="hidden md:flex" />
         <ResizablePanel defaultSize={80} className="w-full">
-          <div className="flex flex-col h-full w-full overflow-hidden">
+          <div className="flex flex-col h-full w-full">
             <Navbar />
             <main className="flex-1 overflow-y-auto p-4 md:p-6">
               <div className="w-full max-w-full mx-auto space-y-6">

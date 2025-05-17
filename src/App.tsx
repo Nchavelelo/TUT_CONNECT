@@ -1,5 +1,5 @@
+
 import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
@@ -9,10 +9,15 @@ import Dashboard from "./pages/Dashboard";
 import RoomBooking from "./pages/RoomBooking";
 import Timetable from "./pages/Timetable";
 import Maintenance from "./pages/Maintenance";
+import MaintenanceAdmin from "./pages/MaintenanceAdmin";
 import Notifications from "./pages/Notifications";
 import AdminDashboard from "./pages/AdminDashboard";
+import UserManagement from "./pages/UserManagement";
+import Reports from "./pages/Reports";
 import Appointments from "./pages/Appointments";
 import NotFound from "./pages/NotFound";
+
+import RoomAllocations from "./pages/RoomAllocations";
 
 const queryClient = new QueryClient();
 
@@ -47,18 +52,31 @@ const AdminRoute = ({ children }: { children: React.ReactNode }) => {
 };
 
 const AppRoutes = () => {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, user } = useAuth();
   
   return (
     <Routes>
-      <Route path="/" element={isAuthenticated ? <Navigate to="/dashboard" /> : <Index />} />
-      <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+      <Route path="/" element={
+        isAuthenticated ? 
+          (user?.role === 'admin' ? <Navigate to="/admin" /> : <Navigate to="/dashboard" />) : 
+          <Index />
+      } />
+      <Route path="/dashboard" element={
+        <ProtectedRoute>
+          {user?.role === 'admin' ? <Navigate to="/admin" /> : <Dashboard />}
+        </ProtectedRoute>
+      } />
       <Route path="/room-booking" element={<ProtectedRoute><RoomBooking /></ProtectedRoute>} />
       <Route path="/timetable" element={<ProtectedRoute><Timetable /></ProtectedRoute>} />
       <Route path="/maintenance" element={<ProtectedRoute><Maintenance /></ProtectedRoute>} />
+      <Route path="/maintenance-admin" element={<AdminRoute><MaintenanceAdmin /></AdminRoute>} />
       <Route path="/notifications" element={<ProtectedRoute><Notifications /></ProtectedRoute>} />
       <Route path="/appointments" element={<ProtectedRoute><Appointments /></ProtectedRoute>} />
       <Route path="/admin" element={<AdminRoute><AdminDashboard /></AdminRoute>} />
+      <Route path="/users" element={<AdminRoute><UserManagement /></AdminRoute>} />
+      <Route path="/reports" element={<AdminRoute><Reports /></AdminRoute>} />
+      <Route path="/room-allocations" element={<AdminRoute><RoomAllocations /></AdminRoute>} />
+      
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
@@ -71,7 +89,6 @@ const App = () => (
         <BrowserRouter>
           <AppRoutes />
           <Toaster />
-          <Sonner />
         </BrowserRouter>
       </AuthProvider>
     </TooltipProvider>

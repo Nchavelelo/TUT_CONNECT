@@ -1,10 +1,11 @@
+
 import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Sidebar from "@/components/Sidebar";
 import NotificationList from "@/components/NotificationList";
 import SendNotification from "@/components/SendNotification";
 import { notifications as allNotifications } from "@/data/mockData";
-import { useToast } from "@/hooks/use-toast";
+import { useToast } from "@/components/ui/use-toast";
 import { useAuth } from "@/hooks/useAuth";
 import { ResizablePanelGroup, ResizablePanel, ResizableHandle } from "@/components/ui/resizable";
 
@@ -50,16 +51,20 @@ const Notifications = () => {
               <div className="w-full max-w-full mx-auto">
                 <div className="mb-6">
                   <h1 className="text-2xl font-bold text-campus-primary">Notifications</h1>
-                  <p className="text-gray-600">Stay updated with campus announcements and alerts</p>
+                  <p className="text-gray-600">
+                    {user?.role === "admin" 
+                      ? "Send and manage notifications across the campus" 
+                      : "Stay updated with campus announcements and alerts"}
+                  </p>
                 </div>
                 
                 <div className="grid gap-6 grid-cols-1 lg:grid-cols-12">
                   {canSendNotifications && (
-                    <div className="lg:col-span-4">
-                      <SendNotification />
+                    <div className="lg:col-span-5">
+                      <SendNotification isAdmin={user?.role === "admin"} />
                     </div>
                   )}
-                  <div className={`${canSendNotifications ? 'lg:col-span-8' : 'lg:col-span-12'}`}>
+                  <div className={`${canSendNotifications ? 'lg:col-span-7' : 'lg:col-span-12'}`}>
                     <NotificationList
                       notifications={notifications}
                       onMarkAsRead={handleMarkAsRead}
