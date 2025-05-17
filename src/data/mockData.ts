@@ -1,15 +1,48 @@
 
-// Re-export all interfaces from the types folder
-export * from './types';
+// Re-export all mock data from this file
+import { notifications } from "./mock/notifications";
+import { users, lecturers } from "./mock/users";
+import { rooms } from "./mock/rooms";
+import { bookings } from "./mock/bookings";
+import { maintenanceRequests } from "./mock/maintenance";
+import { classes } from "./mock/classes";
+import { appointments } from "./mock/appointments";
 
-// Re-export all mock data from individual files
-export { users, lecturers } from './mock/users';
-export { rooms } from './mock/rooms';
-export { bookings } from './mock/bookings';
-export { classes } from './mock/classes';
-export { maintenanceRequests } from './mock/maintenance';
-export { notifications } from './mock/notifications';
-export { appointmentRequests } from './mock/appointments';
+// Export types from types/index.ts
+import { 
+  Notification, 
+  MaintenanceRequest 
+} from './types';
 
-// No need to run the initialization code again as the data is already properly formatted
-// in their respective files
+// Add missing types
+import type { User } from './types/user';
+import type { Room } from './types/room';
+import type { Booking } from './types/booking';
+import type { Class } from './types/class';
+import type { AppointmentRequest } from './types/appointment';
+
+// Define UserRole type
+export type UserRole = 'student' | 'lecturer' | 'admin';
+
+// Export everything
+export {
+  notifications,
+  users,
+  lecturers,
+  rooms,
+  bookings,
+  maintenanceRequests,
+  classes,
+  appointments
+};
+
+// Export types
+export type {
+  User,
+  Notification,
+  MaintenanceRequest,
+  Room,
+  Booking,
+  Class,
+  AppointmentRequest
+};

@@ -10,13 +10,13 @@ const Index = () => {
   
   useEffect(() => {
     // Debugging console log for background image
-    console.log('Background Image URL:', '/lovable-uploads/download (1).jpg');
+    console.log('Background Image URL:', '/lovable-uploads/backgroundImage.jpg');
     
     // Check if image loads
     const img = new Image();
     img.onload = () => console.log('Image loaded successfully');
     img.onerror = () => console.error('Image failed to load');
-    img.src = '/lovable-uploads/download (1).jpg';
+    img.src = '/lovable-uploads/backgroundImage.jpg';
   }, []);
 
   const handleFirstTimeUser = () => {
@@ -36,7 +36,7 @@ const Index = () => {
     <div 
       className="min-h-screen flex flex-col bg-cover bg-center bg-no-repeat"
       style={{
-        backgroundImage: "url('/lovable-uploads/download (1).jpg')", // Updated background image
+        backgroundImage: "url('/lovable-uploads/backgroundImage.jpg')", // Updated background image
         backgroundColor: "rgba(0, 0, 0, 0.6)",
         backgroundBlendMode: "overlay"
       }}
@@ -75,7 +75,7 @@ const Index = () => {
               </div>
             </div>
             
-            <div className="mt-8 text-white text-sm text-center backdrop-blur-sm bg-black/30 p-4 rounded-lg">
+            {/* <div className="mt-8 text-white text-sm text-center backdrop-blur-sm bg-black/30 p-4 rounded-lg">
               <p>For demo purposes, you can use any of the demo accounts</p>
               <p className="mt-1">Or use these formats with any password:</p>
               <div className="grid grid-cols-3 gap-4 mt-2">
@@ -92,7 +92,7 @@ const Index = () => {
                   <p className="text-xs">admin@tut.ac.za</p>
                 </div>
               </div>
-            </div>
+            </div> */}
           </>
         )}
       </div>

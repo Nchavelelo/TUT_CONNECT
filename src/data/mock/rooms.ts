@@ -1,53 +1,62 @@
 
-import { Room } from '../types';
+import { Room } from "../types/room";
 
 export const rooms: Room[] = [
   {
-    id: 'room1',
-    name: 'CS Lab 101',
-    capacity: 30,
-    building: 'Computer Science Building',
-    floor: 1,
-    type: 'lab',
-    features: ['Computers', 'Projector', 'Whiteboard'],
-    image: 'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80',
-    campus: 'North Campus',
-    faculty: 'Computer Science'
+    id: "room1",
+    name: "Lecture Hall A",
+    building: "Science Building",
+    floor: "1",
+    capacity: 120,
+    type: "lecture",
+    amenities: ["projector", "whiteboard", "computer"],
+    availability: [
+      { day: "Monday", slots: ["09:00-11:00", "13:00-15:00"] },
+      { day: "Wednesday", slots: ["09:00-11:00"] },
+      { day: "Friday", slots: ["13:00-15:00"] }
+    ]
   },
   {
-    id: 'room2',
-    name: 'Lecture Hall A',
-    capacity: 100,
-    building: 'Main Building',
-    floor: 2,
-    type: 'classroom',
-    features: ['Projector', 'Sound System', 'Whiteboard'],
-    image: 'https://images.unsplash.com/photo-1487958449943-2429e8be8625?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80',
-    campus: 'South Campus',
-    faculty: 'General'
+    id: "room2",
+    name: "Computer Lab B",
+    building: "Engineering Building",
+    floor: "2",
+    capacity: 40,
+    type: "lab",
+    amenities: ["computers", "whiteboard", "specialized software"],
+    availability: [
+      { day: "Tuesday", slots: ["10:00-12:00", "14:00-16:00"] },
+      { day: "Thursday", slots: ["10:00-12:00"] }
+    ]
   },
   {
-    id: 'room3',
-    name: 'Study Room 201',
-    capacity: 8,
-    building: 'Library',
-    floor: 2,
-    type: 'study',
-    features: ['Whiteboard', 'Power Outlets', 'Wi-Fi'],
-    image: 'https://images.unsplash.com/photo-1433086966358-54859d0ed716?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80',
-    campus: 'North Campus',
-    faculty: 'Library'
+    id: "room3",
+    name: "Conference Room C",
+    building: "Administration Building",
+    floor: "3",
+    capacity: 20,
+    type: "meeting",
+    amenities: ["projector", "videoconferencing", "whiteboard"],
+    availability: [
+      { day: "Monday", slots: ["14:00-16:00"] },
+      { day: "Wednesday", slots: ["14:00-16:00"] },
+      { day: "Friday", slots: ["10:00-12:00"] }
+    ]
   },
   {
-    id: 'room4',
-    name: 'Conference Room B',
-    capacity: 12,
-    building: 'Administration Building',
-    floor: 3,
-    type: 'meeting',
-    features: ['Video Conferencing', 'Projector', 'Whiteboard'],
-    image: 'https://images.unsplash.com/photo-1605810230434-7631ac76ec81?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80',
-    campus: 'South Campus',
-    faculty: 'Administration'
+    id: "room4",
+    name: "Study Space D",
+    building: "Library",
+    floor: "4",
+    capacity: 15,
+    type: "study",
+    amenities: ["quiet space", "power outlets", "whiteboard"],
+    availability: [
+      { day: "Monday", slots: ["09:00-20:00"] },
+      { day: "Tuesday", slots: ["09:00-20:00"] },
+      { day: "Wednesday", slots: ["09:00-20:00"] },
+      { day: "Thursday", slots: ["09:00-20:00"] },
+      { day: "Friday", slots: ["09:00-20:00"] }
+    ]
   }
 ];

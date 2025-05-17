@@ -1,7 +1,8 @@
+
 import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Sidebar from "@/components/Sidebar";
-import { appointmentRequests as initialAppointments, lecturers } from "@/data/mockData";
+import { appointments as initialAppointments, lecturers } from "@/data/mockData";
 import { useAuth } from "@/hooks/useAuth";
 import { useToast } from "@/hooks/use-toast";
 import { ResizablePanelGroup, ResizablePanel, ResizableHandle } from "@/components/ui/resizable";

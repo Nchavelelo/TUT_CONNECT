@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { 
@@ -64,7 +65,9 @@ const sidebarNavItems = [
     name: 'Notifications', 
     icon: Bell, 
     path: '/notifications',
-    roles: ['student', 'lecturer'] 
+    roles: ['student', 'lecturer', 'admin'],
+    highlight: true,
+    description: 'View your notifications'
   },
   
   // Admin Items
@@ -113,6 +116,15 @@ const sidebarNavItems = [
     category: 'Management',
     highlight: true,
     description: 'Manage maintenance requests'
+  },
+  { 
+    name: 'Notifications Management', 
+    icon: Bell, 
+    path: '/notifications',
+    roles: ['admin'],
+    category: 'Management',
+    highlight: true,
+    description: 'Manage system notifications'
   },
   { 
     name: 'System Settings', 

@@ -13,6 +13,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { rooms, bookings, users } from "@/data/mockData";
 import { AlertTriangle, Search, Users, CheckCircle, XCircle, BookOpen } from "lucide-react";
 import RoomBookingsTable from "@/components/admin/RoomBookingsTable";
+import BookingApprovalTable from "@/components/admin/BookingApprovalTable";
 import { toast } from "@/components/ui/use-toast";
 
 const RoomAllocations = () => {
@@ -92,6 +93,9 @@ const RoomAllocations = () => {
                     <p className="text-gray-600">Monitor room bookings and capacity usage</p>
                   </div>
                 </div>
+
+                {/* Add the BookingApprovalTable component at the top */}
+                <BookingApprovalTable />
 
                 <Tabs defaultValue="overview" className="w-full">
                   <TabsList className="mb-6">

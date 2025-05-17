@@ -33,5 +33,13 @@ export const notifications: Notification[] = [
     date: '2025-04-24',
     read: true,
     category: 'general'
+  },
+  {
+    id: 'notif5',
+    title: 'Urgent: Power Outage',
+    message: 'There will be a planned power outage affecting the Soshanguve campus on May 2nd from 10 AM to 2 PM. Classes will be conducted remotely.',
+    date: '2025-04-28',
+    read: false,
+    category: 'urgent'
   }
 ];

@@ -1,4 +1,3 @@
-
 import { Booking } from '../types';
 
 export const bookings: Booking[] = [
@@ -11,7 +10,8 @@ export const bookings: Booking[] = [
     endTime: '12:00',
     purpose: 'Study Session',
     status: 'confirmed',
-    day: 'monday'
+    day: 'monday',
+    userRole: 'student'
   },
   {
     id: 'booking2',
@@ -22,7 +22,8 @@ export const bookings: Booking[] = [
     endTime: '16:00',
     purpose: 'Lecture',
     status: 'confirmed',
-    day: 'tuesday'
+    day: 'tuesday',
+    userRole: 'lecturer'
   },
   {
     id: 'booking3',
@@ -32,7 +33,32 @@ export const bookings: Booking[] = [
     startTime: '09:00',
     endTime: '10:30',
     purpose: 'Group Project',
-    status: 'pending',
-    day: 'wednesday'
+    status: 'pendingApproval',
+    day: 'wednesday',
+    userRole: 'student'
+  },
+  {
+    id: 'booking4',
+    roomId: 'room1',
+    userId: 'lecturer1',
+    date: '2025-04-28',
+    startTime: '13:00',
+    endTime: '15:00',
+    purpose: 'Department Meeting',
+    status: 'pendingApproval',
+    day: 'monday',
+    userRole: 'lecturer'
+  },
+  {
+    id: 'booking5',
+    roomId: 'room1',
+    userId: 'user3',
+    date: '2025-04-28',
+    startTime: '13:00',
+    endTime: '15:00',
+    purpose: 'Study Group',
+    status: 'pendingApproval',
+    day: 'monday',
+    userRole: 'student'
   }
 ];

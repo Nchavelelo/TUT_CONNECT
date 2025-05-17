@@ -1,5 +1,6 @@
+
 import { Link } from "react-router-dom";
-import { BookMarked, Clock, BookOpen, AlertTriangle, Calendar } from "lucide-react";
+import { BookMarked, Clock, BookOpen, AlertTriangle, Calendar, Database } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { useAuth } from "@/hooks/useAuth";
 
@@ -33,6 +34,12 @@ export const QuickActions = () => {
       icon: BookOpen,
       path: "/notifications",
       badge: true,
+    },
+    {
+      title: "Database Schema",
+      icon: Database,
+      path: "/erd",
+      roles: ["admin"],
     },
   ];
 

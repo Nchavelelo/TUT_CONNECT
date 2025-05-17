@@ -1,53 +1,12 @@
-export type UserRole = 'student' | 'lecturer' | 'admin';
-export type UserStatus = 'active' | 'inactive' | 'suspended';
 
-export interface User {
+// Export existing types
+export interface Notification {
   id: string;
-  name: string;
-  email: string;
-  role: UserRole;
-  avatar?: string;
-  faculty?: string;
-  campus?: string;
-  course?: string;
-  department?: string;
-  status?: UserStatus;
-}
-
-export interface Room {
-  id: string;
-  name: string;
-  capacity: number;
-  building: string;
-  floor: number;
-  type: 'classroom' | 'lab' | 'meeting' | 'study';
-  features: string[];
-  image?: string;
-  campus: string;
-  faculty?: string;
-}
-
-export interface Booking {
-  id: string;
-  roomId: string;
-  userId: string;
+  title: string;
+  message: string;
   date: string;
-  startTime: string;
-  endTime: string;
-  purpose: string;
-  status: 'pending' | 'confirmed' | 'cancelled';
-  day?: string;
-}
-
-export interface Class {
-  id: string;
-  name: string;
-  code: string;
-  instructor: string;
-  roomId: string;
-  day: string;
-  startTime: string;
-  endTime: string;
+  read: boolean;
+  category: 'general' | 'booking' | 'maintenance' | 'academic' | 'urgent';
 }
 
 export interface MaintenanceRequest {
@@ -57,31 +16,17 @@ export interface MaintenanceRequest {
   location: string;
   reporterId: string;
   dateReported: string;
-  status: 'pending' | 'in-progress' | 'resolved';
-  priority: 'low' | 'medium' | 'high';
-  imageUrl?: string;
+  priority: "high" | "low" | "medium";
+  status: "pending" | "in-progress" | "resolved";
   assignedTo?: string;
   assignedDate?: string;
   notes?: string;
+  imageUrl?: string;
 }
 
-export interface Notification {
-  id: string;
-  title: string;
-  message: string;
-  date: string;
-  read: boolean;
-  category: 'general' | 'booking' | 'maintenance' | 'academic';
-}
-
-export interface AppointmentRequest {
-  id: string;
-  studentId: string;
-  lecturerId: string;
-  subject: string;
-  description: string;
-  preferredDate: string;
-  preferredTime: string;
-  status: 'pending' | 'approved' | 'rejected';
-  createdAt: string;
-}
+// Re-export all other types
+export * from './user';
+export * from './room';
+export * from './booking';
+export * from './class';
+export * from './appointment';

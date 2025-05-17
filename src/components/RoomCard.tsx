@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Room, bookings } from "@/data/mockData";
 import { Badge } from "@/components/ui/badge";
